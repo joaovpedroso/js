@@ -1,0 +1,61 @@
+<div class="pedidos-list">
+	<div class="numero-pedido">20</div>
+	<div class="numero-pedido">19</div>
+	<div class="numero-pedido">18</div>
+	<div class="numero-pedido">15</div>
+	<div class="numero-pedido">16</div>
+	<div class="numero-pedido">17</div>
+</div>
+
+<label>Pesquisar</label>
+<input type="text" id="search" placeholder="Numero do Pedido">
+<button id="pesquisar">Pesquisar</button>
+<button id='close-notification'>Listar Todos</button>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	//Quando clicado no botão pesquisar
+	$("#pesquisar").click(function(){
+	
+		//Receber valor informado
+		numero = $("#search").val();
+		
+		//Verificar se for == a 0 nao fazer nada
+		if( numero == 0 ){
+		
+			numeros = $(".numero-pedido");
+			numeros.each(function(){
+				this.style.display = "block"
+			});
+			
+		}else {
+			
+			//Caso seja diferente de 0 percorra os elementos com a classe numero
+			numeros = $(".numero-pedido");
+			numeros.each(function(){
+				//Seleciona o conteúdo dos elementos
+				p = this.textContent;
+
+				//Verifica se é igual ao que foi pesquisado
+				if( p == numero){
+				
+					//Se sim - Aplica propriedade de estilo block - Permanece na tela
+					this.style.display = "block";
+					return true;
+				}else {
+					//Se não - Mostra mensagem de Não encontrado e oculta os pedidos
+					//$(".pedidos-list").html("<p>Nenhum Pedido Encontrado  <a href='' id='close-notification'>Listar Todos</a></p>");
+					this.style.display = "none";
+				}
+			});
+		}
+	});
+	
+	$("#close-notification").click(function(){
+		numeros = $(".numero-pedido");
+		numeros.each(function(){
+			this.style.display = "block";
+		});
+	});
+</script>
