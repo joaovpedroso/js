@@ -1,0 +1,71 @@
+        <script>
+            //Local Storage
+            
+            //Definindo Array com os Id´s
+            var produtos = new Array();
+            
+            $('.add-cart').click(function (e) {
+                e.preventDefault();
+                
+                //Inserir no array os itens ja armazenados no storage
+                produtos = [localStorage.getItem('produtos')];
+                produto = (this);
+                
+                //Inserir no Array o ID do item
+                produtos.push(produto.id)
+                
+                //Atualizar o array de ID´s do LocalStorage
+                localStorage.setItem('produtos', produtos);
+                
+                iconCart();
+            });
+
+            //Função que atualiza a quantidade de itens do carrinho
+            function iconCart(){
+                var item = $('#icon-cart');
+                var itens = item.text();
+                storage = localStorage.getItem('produtos');
+
+                //Verifica se o storage é diferente de vazio para realizar a divisão do conteudo
+                if( storage != ',' && storage != '' && storage !=  null){
+                    storage = storage.split(',').length;
+                }
+                
+                //Verificar quantidades
+                if( storage <= 1 ){
+                    quantidade = 0;
+                }else {
+                    quantidade = (storage-1);   
+                }
+                
+                //Escrever no HTML a quantidade de itens no carrinho
+                if( quantidade > 1 ){
+                    item.html('<span id="icon-cart">'+quantidade+' itens</span>');
+                }else {
+                    item.html('<span id="icon-cart">'+quantidade+' item</span>');
+                }
+                
+            }
+            
+            //Ao carregar a página executar a função para atualizar a quantidade
+            $(document).ready(function(){
+                iconCart();
+            })
+            
+//            Inserindo objetos em JSON
+//            var produtos = [];
+//
+//            $('.add-cart').click(function (e) {
+//                e.preventDefault();
+//                item = (this);
+//
+//                if (produtos.length < 3) {
+//                    var itens = new Object();
+//                    itens.id = item.id;
+//                    produtos.push(itens);
+//                    console.log(produtos);
+//                } else {
+//                    var prods = JSON.stringify(produtos);                    
+//                }
+//              })
+        </script>
