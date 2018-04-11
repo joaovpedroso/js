@@ -1,0 +1,48 @@
+<input id="produto" name="produto">
+<button id="salvar">Salvar</button>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+
+//Definindo variaveis
+var codigo = [];
+var volt = [];
+var qtd = [];
+var produtos = {};
+
+$('#salvar').click(function(){
+	item = JSON.parse(localStorage.getItem('produtos'));
+	if( item === null ){
+		var codigo = [];
+		var volt = [];
+		var qtd = [];
+	} else {
+		codigo = item.codigo;
+		console.log("Prodss - "+codigo);
+	}
+
+	//Recebe o valor do input
+	var cod = $('#produto').val();
+	
+	//Insere nos array´s os valores
+	codigo.push(cod);
+	volt.push((cod));
+	qtd.push(cod);
+	
+	//Array / JSON com os 3 atributos
+	var prods = {codigo,volt,qtd};
+	
+	//Convertendo o array em JSON
+	produtos = JSON.stringify(prods);
+	
+	//Armazenando os dados no Storage local
+	localStorage.setItem('produtos', produtos);
+	
+	//Convertendo o JSON em array
+	produtos = JSON.parse(localStorage.getItem('produtos'));
+	
+	console.log("1º Produto - "+produtos.codigo[0] + " - Array "+ codigo);
+	
+})
+
+</script>
