@@ -1,6 +1,77 @@
-/*
- Validador de CNPJ, valida se for um CNPJ e Retorna TRUE ou FALSE
-*/
+function verifica_cpf_cnpj ( valor ) {
+
+    // Garante que o valor é uma string
+    valor = valor.toString();
+    
+    // Remove caracteres inválidos do valor
+    valor = valor.replace(/[^0-9]/g, '');
+
+    // Verifica CPF
+    if ( valor.length === 11 ) {
+        return 'CPF';
+    } 
+    
+    // Verifica CNPJ
+    else if ( valor.length === 14 ) {
+        return 'CNPJ';
+    } 
+    
+    // Não retorna nada
+    else {
+        return false;
+    }
+    
+} 
+
+function calc_digitos_posicoes( digitos, posicoes = 10, soma_digitos = 0 ) {
+
+    // Garante que o valor é uma string
+    digitos = digitos.toString();
+
+    // Faz a soma dos dígitos com a posição
+    // Ex. para 10 posições:
+    //   0    2    5    4    6    2    8    8   4
+    // x10   x9   x8   x7   x6   x5   x4   x3  x2
+    //   0 + 18 + 40 + 28 + 36 + 10 + 32 + 24 + 8 = 196
+    for ( var i = 0; i < digitos.length; i++  ) {
+        // Preenche a soma com o dígito vezes a posição
+        soma_digitos = soma_digitos + ( digitos[i] * posicoes );
+
+        // Subtrai 1 da posição
+        posicoes--;
+
+        // Parte específica para CNPJ
+        // Ex.: 5-4-3-2-9-8-7-6-5-4-3-2
+        if ( posicoes < 2 ) {
+            // Retorno a posição para 9
+            posicoes = 9;
+        }
+    }
+
+    // Captura o resto da divisão entre soma_digitos dividido por 11
+    // Ex.: 196 % 11 = 9
+    soma_digitos = soma_digitos % 11;
+
+    // Verifica se soma_digitos é menor que 2
+    if ( soma_digitos < 2 ) {
+        // soma_digitos agora será zero
+        soma_digitos = 0;
+    } else {
+        // Se for maior que 2, o resultado é 11 menos soma_digitos
+        // Ex.: 11 - 9 = 2
+        // Nosso dígito procurado é 2
+        soma_digitos = 11 - soma_digitos;
+    }
+
+    // Concatena mais um dígito aos primeiro nove dígitos
+    // Ex.: 025462884 + 2 = 0254628842
+    var cpf = digitos + soma_digitos;
+
+    // Retorna
+    return cpf;
+    
+} 
+
 function valida_cpf( valor ) {
 
     // Garante que o valor é uma string
@@ -31,9 +102,6 @@ function valida_cpf( valor ) {
     
 } 
 
-/*
- Validador de CNPJ, valida se for um CNPJ e Retorna TRUE ou FALSE
-*/
 function valida_cnpj ( valor ) {
 
     // Garante que o valor é uma string
@@ -66,4 +134,88 @@ function valida_cnpj ( valor ) {
     // Retorna falso por padrão
     return false;
     
-}
+} 
+
+function valida_cpf_cnpj ( valor ) {
+
+    // Verifica se é CPF ou CNPJ
+    var valida = verifica_cpf_cnpj( valor );
+
+    // Garante que o valor é uma string
+    valor = valor.toString();
+    
+    // Remove caracteres inválidos do valor
+    valor = valor.replace(/[^0-9]/g, '');
+
+
+    // Valida CPF
+    if ( valida === 'CPF' ) {
+        // Retorna true para cpf válido
+        return valida_cpf( valor );
+    } 
+    
+    // Valida CNPJ
+    else if ( valida === 'CNPJ' ) {
+        // Retorna true para CNPJ válido
+        return valida_cnpj( valor );
+    } 
+    
+    // Não retorna nada
+    else {
+        return false;
+    }
+    
+} 
+
+function formata_cpf_cnpj( valor ) {
+
+    // O valor formatado
+    var formatado = false;
+    
+    // Verifica se é CPF ou CNPJ
+    var valida = verifica_cpf_cnpj( valor );
+
+    // Garante que o valor é uma string
+    valor = valor.toString();
+    
+    // Remove caracteres inválidos do valor
+    valor = valor.replace(/[^0-9]/g, '');
+
+
+    // Valida CPF
+    if ( valida === 'CPF' ) {
+    
+        // Verifica se o CPF é válido
+        if ( valida_cpf( valor ) ) {
+        
+            // Formata o CPF ###.###.###-##
+            formatado  = valor.substr( 0, 3 ) + '.';
+            formatado += valor.substr( 3, 3 ) + '.';
+            formatado += valor.substr( 6, 3 ) + '-';
+            formatado += valor.substr( 9, 2 ) + '';
+            
+        }
+        
+    }
+    
+    // Valida CNPJ
+    else if ( valida === 'CNPJ' ) {
+    
+        // Verifica se o CNPJ é válido
+        if ( valida_cnpj( valor ) ) {
+        
+            // Formata o CNPJ ##.###.###/####-##
+            formatado  = valor.substr( 0,  2 ) + '.';
+            formatado += valor.substr( 2,  3 ) + '.';
+            formatado += valor.substr( 5,  3 ) + '/';
+            formatado += valor.substr( 8,  4 ) + '-';
+            formatado += valor.substr( 12, 14 ) + '';
+            
+        }
+        
+    } 
+
+    // Retorna o valor 
+    return formatado;
+    
+} 
