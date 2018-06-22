@@ -1,0 +1,43 @@
+<h1>Instalação</h1>
+
+Iniciar gulp no diretório do projeto
+*npm install --save-dev gulp
+
+Listar os plugins instalados
+*npm ls --depth=0
+
+Instalar Plugins
+*Acessar site NPM: npmjs.com
+*Pesquisar pelo plugin: gulp-NOME DO PLUGIN
+*Executar: NPM Init 
+*Executar o npm install do plugin
+
+Criar tasks (Ações)
+*gulp.task('nome', function(){});
+
+Rodar ação do Gulp
+*gulp 'nome da ação'
+
+Observador Watch
+*gulp watch
+
+
+
+<h1> Utilização  </h1>
+1?Instalar o node na máquina - nodejs.org
+2?Instalar Gulp na Raiz do Projeto - gulpjs.com
+3?Criar um arquivo gulpfile.js
+4?Instalar os plugins - npmjs.com
+5?Rodar o Watch - Observador
+
+
+<h3>Plugins utilizados</h3>
+Minificador JS - gulp-uglify
+Minificador CSS - gulp-cssmin
+Minificador IMG - gulp-imagemin
+Concatenador - gulp-concat
+
+<h3>Referências</h3>
+Youtube - Minificando arquivos com Gulp, https://www.youtube.com/watch?v=GQZpsJusecU
+Youtube - #9 Gulp e Sass, https://www.youtube.com/watch?v=6JqP39PvTcE
+Youtube - Tutoriais Relâmpago - Automatização com Gulp - Parte 1, https://www.youtube.com/watch?v=r6LpCzO6OW8
