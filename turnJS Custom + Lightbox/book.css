@@ -1,0 +1,38 @@
+#indice-content {
+    transition: all 1s ease-in-out;
+    position: absolute;
+    border-radius: 3px;
+    width: 250px;
+    height: 490px;
+    z-index: 50;
+    background: #fff;
+    box-shadow: 3px 1px 1px #eee;
+    overflow-x: hidden;
+}  
+#indice-content::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+#indice-content::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+#indice-content::-webkit-scrollbar-thumb {
+    background: #00baed;
+}
+.indice-content-ul-item{
+    cursor: pointer;
+}
+.book-control{
+    position: absolute;
+    margin-top: 250px;
+    z-index: 49;
+    padding: 20px;
+    background-color: rgba(211, 211, 211, 0.5);
+    cursor: pointer;
+}
+.book-control-prev {
+    margin-left: 10px;
+}
+.book-control-next{
+    right: 25px;
+}

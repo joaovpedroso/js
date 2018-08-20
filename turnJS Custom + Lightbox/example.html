@@ -1,0 +1,103 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="book.css">
+<link rel="stylesheet" href="lightbox/lightbox.css">
+<link rel="stylesheet" href="fontawesome/font-awesome.min.css">
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar-bottom-40 pad-top-30">
+
+	<button class="btn btn-common mar-bottom-10" id="indice" title="Índice">
+		<i class="fa fa-align-justify"></i>
+	</button>
+
+	<div id="indice-content" class="hidden pad-20">
+		<p class="font-20 upper font-500 mar-bottom-20">Índice</p>
+		<ul class="indice-content-ul">
+			<li class="indice-content-ul-item" data-number-pages="1">
+				<a>
+					<i class="fa fa-arrow-right"></i> Capa
+				</a>
+			</li>
+			<li class="indice-content-ul-item" data-number-pages="2">
+				<a>
+					<i class="fa fa-arrow-right"></i> Índice
+				</a>
+			</li>
+			<li class="indice-content-ul-item" data-number-pages="3">
+				<a>
+					<i class="fa fa-arrow-right"></i> 3
+				</a>
+			</li>
+			<li class="indice-content-ul-item" data-number-pages="4">
+				<a>
+					<i class="fa fa-arrow-right"></i> 4
+				</a>
+			</li>
+			<li class="indice-content-ul-item" data-number-pages="4">
+				<a>
+					<i class="fa fa-arrow-right"></i> 5
+				</a>
+			</li>
+			<li class="indice-content-ul-item" data-number-pages="4">
+				<a>
+					<i class="fa fa-arrow-right"></i> 6
+				</a>
+			</li>
+			
+
+		</ul>
+	</div>
+
+	<div class="book-control book-control-prev">
+		<i class="fa fa-chevron-left font-20 blue mar-top-5"></i>
+	</div>
+	<div class="book-control book-control-next">
+		<i class="fa fa-chevron-right font-20 blue mar-top-5"></i>
+	</div>
+
+	<div id="flipbook">
+		<!-- CAPA -->
+		<div class="hard"> 
+			<a href="book/1.jpg" data-lightbox="modelo-01" data-title="Capa 01">
+				<img src="book/1.jpg" class="img-responsive">
+			</a>
+		</div>
+		<!-- CONTRA CAPA -->
+		<div class="hard">
+			<a href="book/2.jpg" data-lightbox="modelo-01" data-title="Capa 02">
+				<img src="book/2.jpg" class="img-responsive">
+			</a>
+		</div>
+
+		<!-- PAGINAS -->
+		<div class="pag">
+			<a href="book/3.jpg" data-lightbox="modelo-01" data-title="Página 3">
+				<img src="book/3.jpg" class="img-responsive">
+			</a>
+		</div>
+		<div class="pag">
+			<a href="book/4.jpg" data-lightbox="modelo-01" data-title="Página 4">
+				<img src="book/4.jpg" class="img-responsive">
+			</a>
+		</div>
+		<!-- FIM PAGINAS -->
+
+		<!-- CAPA FINAL -->
+		<div class="hard">
+			<a href="book/47.jpg" data-lightbox="modelo-01" data-title="Capa 03">
+				<img src="book/47.jpg" class="img-responsive">
+			</a>
+		</div>
+		<!-- CONTRA CAPA -->
+		<div class="hard">
+			<a href="book/48.jpg" data-lightbox="modelo-01" data-title="Capa 04">
+				<img src="book/48.jpg" class="img-responsive">
+			</a>
+		</div>
+	</div>
+
+</div>
+
+<script type="text/javascript" src="jquery-min.js"></script>
+<script type="text/javascript" src="turn.min.js"></script>
+<script type="text/javascript" src="lightbox/lightbox.js"></script>
+<script type="text/javascript" src="book.js"></script>
